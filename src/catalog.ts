@@ -31,25 +31,25 @@ export function getAllCategories(): Category[] {
 }
 
 export function getCategoryByName(name: string): Category | undefined {
-  return catalog.categories.find(
-    (c) => c.name.toLowerCase() === name.toLowerCase()
-  );
+  return catalog.categories.find((c) => c.name.toLowerCase() === name.toLowerCase());
 }
 
 export function getAllRefactorings(): Refactoring[] {
   return catalog.categories.flatMap((c) => c.refactorings);
 }
 
-export function getRefactoringByName(name: string): {
-  refactoring: Refactoring;
-  category: string;
-} | undefined {
+export function getRefactoringByName(name: string):
+  | {
+      refactoring: Refactoring;
+      category: string;
+    }
+  | undefined {
   for (const category of catalog.categories) {
     const refactoring = category.refactorings.find(
-      (r) => r.name.toLowerCase() === name.toLowerCase()
+      (r) => r.name.toLowerCase() === name.toLowerCase(),
     );
     if (refactoring) {
-      return { refactoring, category: category.name };
+      return { category: category.name, refactoring };
     }
   }
   return undefined;
@@ -60,9 +60,7 @@ export function getAllSmells(): Smell[] {
 }
 
 export function getSmellByName(name: string): Smell | undefined {
-  return catalog.smells.find(
-    (s) => s.name.toLowerCase() === name.toLowerCase()
-  );
+  return catalog.smells.find((s) => s.name.toLowerCase() === name.toLowerCase());
 }
 
 export function getRefactoringsForSmells(smellNames: string[]): {
@@ -70,21 +68,19 @@ export function getRefactoringsForSmells(smellNames: string[]): {
   refactorings: { name: string; description: string; category: string }[];
 }[] {
   return smellNames.map((smellName) => {
-    const smell = catalog.smells.find(
-      (s) => s.name.toLowerCase() === smellName.toLowerCase()
-    );
+    const smell = catalog.smells.find((s) => s.name.toLowerCase() === smellName.toLowerCase());
     if (!smell) {
-      return { smell: smellName, refactorings: [] };
+      return { refactorings: [], smell: smellName };
     }
     const refactorings = smell.suggestedRefactorings.map((refName) => {
       const found = getRefactoringByName(refName);
       return {
-        name: refName,
-        description: found?.refactoring.description ?? "Unknown refactoring",
         category: found?.category ?? "Unknown",
+        description: found?.refactoring.description ?? "Unknown refactoring",
+        name: refName,
       };
     });
-    return { smell: smell.name, refactorings };
+    return { refactorings, smell: smell.name };
   });
 }
 
@@ -101,7 +97,7 @@ export function searchRefactorings(query: string): {
         refactoring.description.toLowerCase().includes(lower) ||
         refactoring.motivation.toLowerCase().includes(lower)
       ) {
-        results.push({ refactoring, category: category.name });
+        results.push({ category: category.name, refactoring });
       }
     }
   }

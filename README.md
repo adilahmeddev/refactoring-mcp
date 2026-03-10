@@ -25,14 +25,14 @@ claude plugin install /path/to/refactoring-mcp
 
 ## Tools
 
-| Tool | Description |
-|------|-------------|
-| `list_categories` | Browse all 7 refactoring categories |
-| `list_refactorings` | List refactorings, optionally filtered by category |
-| `get_refactoring` | Full details for a specific refactoring |
-| `list_smells` | All 24 code smells with suggested refactorings |
+| Tool                   | Description                                         |
+| ---------------------- | --------------------------------------------------- |
+| `list_categories`      | Browse all 7 refactoring categories                 |
+| `list_refactorings`    | List refactorings, optionally filtered by category  |
+| `get_refactoring`      | Full details for a specific refactoring             |
+| `list_smells`          | All 24 code smells with suggested refactorings      |
 | `suggest_refactorings` | Given detected smells, get recommended refactorings |
-| `search_refactorings` | Keyword search across the catalog |
+| `search_refactorings`  | Keyword search across the catalog                   |
 
 ## Development
 

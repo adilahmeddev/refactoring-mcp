@@ -23,12 +23,7 @@
           "name": "Inline Function",
           "description": "One of the themes of this book is using short functions named to show their intent, because these functions lead to clearer and easier to read code. But sometimes, I do come across a function in which the body is as clear as the name.",
           "motivation": "One of the themes of this book is using short functions named to show their intent, because these functions lead to clearer and easier to read code. But sometimes, I do come across a function in which the body is as clear as the name.",
-          "indicators": [
-            "Shotgun Surgery",
-            "Lazy Element",
-            "Speculative Generality",
-            "Middle Man"
-          ]
+          "indicators": ["Shotgun Surgery", "Lazy Element", "Speculative Generality", "Middle Man"]
         },
         {
           "name": "Extract Variable",
@@ -57,18 +52,13 @@
           "name": "Encapsulate Variable",
           "description": "Refactoring is all about manipulating the elements of our programs. Data is more awkward to manipulate than functions. Since using a function usually means calling it, I can easily rename or move a function while keeping the old function intact as a forwarding function (so my old code calls the old function, which calls the new function).",
           "motivation": "Refactoring is all about manipulating the elements of our programs. Data is more awkward to manipulate than functions. Since using a function usually means calling it, I can easily rename or move a function while keeping the old function intact as a forwarding function (so my old code calls the old function, which calls the new function).",
-          "indicators": [
-            "Global Data",
-            "Mutable Data"
-          ]
+          "indicators": ["Global Data", "Mutable Data"]
         },
         {
           "name": "Rename Variable",
           "description": "Naming things well is the heart of clear programming. Variables can do a lot to explain what I'm up to -- if I name them well. But I frequently get my names wrong -- sometimes because I'm not thinking carefully enough, sometimes because my understanding of the problem improves as I learn more, and sometimes because the program's purpose changes as my users' needs change.",
           "motivation": "Naming things well is the heart of clear programming. Variables can do a lot to explain what I'm up to -- if I name them well. But I frequently get my names wrong -- sometimes because I'm not thinking carefully enough, sometimes because my understanding of the problem improves as I learn more, and sometimes because the program's purpose changes as my users' needs change.",
-          "indicators": [
-            "Mysterious Name"
-          ]
+          "indicators": ["Mysterious Name"]
         },
         {
           "name": "Introduce Parameter Object",
@@ -85,30 +75,19 @@
           "name": "Combine Functions into Class",
           "description": "Classes are a fundamental construct in most modern programming languages. They bind together data and functions into a shared environment, exposing some of that data and function to other program elements for collaboration.",
           "motivation": "Classes are a fundamental construct in most modern programming languages. They bind together data and functions into a shared environment, exposing some of that data and function to other program elements for collaboration.",
-          "indicators": [
-            "Long Parameter List",
-            "Mutable Data",
-            "Shotgun Surgery"
-          ]
+          "indicators": ["Long Parameter List", "Mutable Data", "Shotgun Surgery"]
         },
         {
           "name": "Combine Functions into Transform",
           "description": "Software often involves feeding data into programs that calculate various derived information from it. These derived values may be needed in several places, and those calculations are often repeated wherever the derived data is used.",
           "motivation": "Software often involves feeding data into programs that calculate various derived information from it. These derived values may be needed in several places, and those calculations are often repeated wherever the derived data is used.",
-          "indicators": [
-            "Mutable Data",
-            "Shotgun Surgery"
-          ]
+          "indicators": ["Mutable Data", "Shotgun Surgery"]
         },
         {
           "name": "Split Phase",
           "description": "When I run into code that's dealing with two different things, I look for a way to split it into separate modules. I endeavor to make this split because, if I need to make a change, I can deal with each topic separately and not have to hold both in my head together.",
           "motivation": "When I run into code that's dealing with two different things, I look for a way to split it into separate modules. I endeavor to make this split because, if I need to make a change, I can deal with each topic separately and not have to hold both in my head together.",
-          "indicators": [
-            "Divergent Change",
-            "Shotgun Surgery",
-            "Data Class"
-          ]
+          "indicators": ["Divergent Change", "Shotgun Surgery", "Data Class"]
         }
       ]
     },
@@ -120,9 +99,7 @@
           "name": "Encapsulate Record",
           "description": "This is why I often favor objects over records for mutable data. With objects, I can hide what is stored and provide methods for all three values. The user of the object doesn't need to know or care which is stored and which is calculated.",
           "motivation": "This is why I often favor objects over records for mutable data. With objects, I can hide what is stored and provide methods for all three values. The user of the object doesn't need to know or care which is stored and which is calculated.",
-          "indicators": [
-            "Data Class"
-          ]
+          "indicators": ["Data Class"]
         },
         {
           "name": "Encapsulate Collection",
@@ -134,17 +111,13 @@
           "name": "Replace Primitive with Object",
           "description": "Often, in early stages of development you make decisions about representing simple facts as simple data items, such as numbers or strings. As development proceeds, those simple items aren't so simple anymore.",
           "motivation": "Often, in early stages of development you make decisions about representing simple facts as simple data items, such as numbers or strings. As development proceeds, those simple items aren't so simple anymore.",
-          "indicators": [
-            "Primitive Obsession"
-          ]
+          "indicators": ["Primitive Obsession"]
         },
         {
           "name": "Replace Temp with Query",
           "description": "One use of temporary variables is to capture the value of some code in order to refer to it later in a function. Using a temp allows me to refer to the value while explaining its meaning and avoiding repeating the code that calculates it.",
           "motivation": "One use of temporary variables is to capture the value of some code in order to refer to it later in a function. Using a temp allows me to refer to the value while explaining its meaning and avoiding repeating the code that calculates it.",
-          "indicators": [
-            "Long Function"
-          ]
+          "indicators": ["Long Function"]
         },
         {
           "name": "Extract Class",
@@ -162,28 +135,19 @@
           "name": "Inline Class",
           "description": "Inline Class is the inverse of Extract Class (182). I use Inline Class if a class is no longer pulling its weight and shouldn't be around any more. Often, this is the result of refactoring that moves other responsibilities out of the class so there is little left.",
           "motivation": "Inline Class is the inverse of Extract Class (182). I use Inline Class if a class is no longer pulling its weight and shouldn't be around any more. Often, this is the result of refactoring that moves other responsibilities out of the class so there is little left.",
-          "indicators": [
-            "Shotgun Surgery",
-            "Lazy Element",
-            "Speculative Generality"
-          ]
+          "indicators": ["Shotgun Surgery", "Lazy Element", "Speculative Generality"]
         },
         {
           "name": "Hide Delegate",
           "description": "One of the keys -- if not the key -- to good modular design is encapsulation. Encapsulation means that modules need to know less about other parts of the system. Then, when things change, fewer modules need to be told about the change -- which makes the change easier to make.",
           "motivation": "One of the keys -- if not the key -- to good modular design is encapsulation. Encapsulation means that modules need to know less about other parts of the system. Then, when things change, fewer modules need to be told about the change -- which makes the change easier to make.",
-          "indicators": [
-            "Message Chains",
-            "Insider Trading"
-          ]
+          "indicators": ["Message Chains", "Insider Trading"]
         },
         {
           "name": "Remove Middle Man",
           "description": "In the motivation for Hide Delegate (189), I talked about the advantages of encapsulating the use of a delegated object. There is a price for this. Every time the client wants to use a new feature of the delegate, I have to add a simple delegating method to the server.",
           "motivation": "In the motivation for Hide Delegate (189), I talked about the advantages of encapsulating the use of a delegated object. There is a price for this. Every time the client wants to use a new feature of the delegate, I have to add a simple delegating method to the server.",
-          "indicators": [
-            "Middle Man"
-          ]
+          "indicators": ["Middle Man"]
         },
         {
           "name": "Substitute Algorithm",
@@ -216,10 +180,7 @@
           "name": "Move Field",
           "description": "Programming involves writing a lot of code that implements behavior -- but the strength of a program is really founded on its data structures. If I have a good set of data structures that match the problem, then my behavior code is simple and straightforward.",
           "motivation": "Programming involves writing a lot of code that implements behavior -- but the strength of a program is really founded on its data structures. If I have a good set of data structures that match the problem, then my behavior code is simple and straightforward.",
-          "indicators": [
-            "Shotgun Surgery",
-            "Insider Trading"
-          ]
+          "indicators": ["Shotgun Surgery", "Insider Trading"]
         },
         {
           "name": "Move Statements into Function",
@@ -243,34 +204,25 @@
           "name": "Slide Statements",
           "description": "Code is easier to understand when things that are related to each other appear together. If several lines of code access the same data structure, it's best for them to be together rather than intermingled with code accessing other data structures.",
           "motivation": "Code is easier to understand when things that are related to each other appear together. If several lines of code access the same data structure, it's best for them to be together rather than intermingled with code accessing other data structures.",
-          "indicators": [
-            "Duplicated Code",
-            "Mutable Data"
-          ]
+          "indicators": ["Duplicated Code", "Mutable Data"]
         },
         {
           "name": "Split Loop",
           "description": "You often see loops that are doing two different things at once just because they can do that with one pass through a loop. But if you're doing two different things in the same loop, then whenever you need to modify the loop you have to understand both things.",
           "motivation": "You often see loops that are doing two different things at once just because they can do that with one pass through a loop. But if you're doing two different things in the same loop, then whenever you need to modify the loop you have to understand both things.",
-          "indicators": [
-            "Long Function"
-          ]
+          "indicators": ["Long Function"]
         },
         {
           "name": "Replace Loop with Pipeline",
           "description": "Like most programmers, I was taught to use loops to iterate over a collection of objects. Increasingly, however, language environments provide a better construct: the collection pipeline. Collection Pipelines [mf-cp] allow me to describe my processing as a series of operations, each consuming and emitting a collection.",
           "motivation": "Like most programmers, I was taught to use loops to iterate over a collection of objects. Increasingly, however, language environments provide a better construct: the collection pipeline. Collection Pipelines [mf-cp] allow me to describe my processing as a series of operations, each consuming and emitting a collection.",
-          "indicators": [
-            "Loops"
-          ]
+          "indicators": ["Loops"]
         },
         {
           "name": "Remove Dead Code",
           "description": "When we put code into production, even on people's devices, we aren't charged by weight. A few unused lines of code don't slow down our systems nor take up significant memory; indeed, decent compilers will instinctively remove them.",
           "motivation": "When we put code into production, even on people's devices, we aren't charged by weight. A few unused lines of code don't slow down our systems nor take up significant memory; indeed, decent compilers will instinctively remove them.",
-          "indicators": [
-            "Speculative Generality"
-          ]
+          "indicators": ["Speculative Generality"]
         }
       ]
     },
@@ -282,33 +234,25 @@
           "name": "Split Variable",
           "description": "Variables have various uses. Some of these uses naturally lead to the variable being assigned to several times. Loop variables change for each run of a loop (such as the i in for (let i=0; i<10; i++)).",
           "motivation": "Variables have various uses. Some of these uses naturally lead to the variable being assigned to several times. Loop variables change for each run of a loop (such as the i in for (let i=0; i<10; i++)).",
-          "indicators": [
-            "Mutable Data"
-          ]
+          "indicators": ["Mutable Data"]
         },
         {
           "name": "Rename Field",
           "description": "Names are important, and field names in record structures can be especially important when those record structures are widely used across a program. Data structures play a particularly important role in understanding.",
           "motivation": "Names are important, and field names in record structures can be especially important when those record structures are widely used across a program. Data structures play a particularly important role in understanding.",
-          "indicators": [
-            "Mysterious Name"
-          ]
+          "indicators": ["Mysterious Name"]
         },
         {
           "name": "Replace Derived Variable with Query",
           "description": "One of the biggest sources of problems in software is mutable data. Data changes can often couple together parts of code in awkward ways, with changes in one part leading to knock-on effects that are hard to spot.",
           "motivation": "One of the biggest sources of problems in software is mutable data. Data changes can often couple together parts of code in awkward ways, with changes in one part leading to knock-on effects that are hard to spot.",
-          "indicators": [
-            "Mutable Data"
-          ]
+          "indicators": ["Mutable Data"]
         },
         {
           "name": "Change Reference to Value",
           "description": "When I nest an object, or data structure, within another I can treat the inner object as a reference or as a value. The difference is most obviously visible in how I handle updates of the inner object's properties.",
           "motivation": "When I nest an object, or data structure, within another I can treat the inner object as a reference or as a value. The difference is most obviously visible in how I handle updates of the inner object's properties.",
-          "indicators": [
-            "Mutable Data"
-          ]
+          "indicators": ["Mutable Data"]
         },
         {
           "name": "Change Value to Reference",
@@ -326,9 +270,7 @@
           "name": "Decompose Conditional",
           "description": "One of the most common sources of complexity in a program is complex conditional logic. As I write code to do various things depending on various conditions, I can quickly end up with a pretty long function.",
           "motivation": "One of the most common sources of complexity in a program is complex conditional logic. As I write code to do various things depending on various conditions, I can quickly end up with a pretty long function.",
-          "indicators": [
-            "Long Function"
-          ]
+          "indicators": ["Long Function"]
         },
         {
           "name": "Consolidate Conditional Expression",
@@ -346,27 +288,19 @@
           "name": "Replace Conditional with Polymorphism",
           "description": "Complex conditional logic is one of the hardest things to reason about in programming, so I always look for ways to add structure to conditional logic. Often, I find I can separate the logic into different circumstances -- high-level cases -- to divide the conditions.",
           "motivation": "Complex conditional logic is one of the hardest things to reason about in programming, so I always look for ways to add structure to conditional logic. Often, I find I can separate the logic into different circumstances -- high-level cases -- to divide the conditions.",
-          "indicators": [
-            "Long Function",
-            "Primitive Obsession",
-            "Repeated Switches"
-          ]
+          "indicators": ["Long Function", "Primitive Obsession", "Repeated Switches"]
         },
         {
           "name": "Introduce Special Case",
           "description": "A common case of duplicated code is when many users of a data structure check a specific value, and then most of them do the same thing. If I find many parts of the code base having the same reaction to a particular value, I want to bring that reaction into a single place.",
           "motivation": "A common case of duplicated code is when many users of a data structure check a specific value, and then most of them do the same thing. If I find many parts of the code base having the same reaction to a particular value, I want to bring that reaction into a single place.",
-          "indicators": [
-            "Temporary Field"
-          ]
+          "indicators": ["Temporary Field"]
         },
         {
           "name": "Introduce Assertion",
           "description": "Often, sections of code work only if certain conditions are true. This may be as simple as a square root calculation only working on a positive input value. With an object, it may require that at least one of a group of fields has a value in it.",
           "motivation": "Often, sections of code work only if certain conditions are true. This may be as simple as a square root calculation only working on a positive input value. With an object, it may require that at least one of a group of fields has a value in it.",
-          "indicators": [
-            "Comments"
-          ]
+          "indicators": ["Comments"]
         }
       ]
     },
@@ -378,9 +312,7 @@
           "name": "Separate Query from Modifier",
           "description": "When I have a function that gives me a value and has no observable side effects, I have a very valuable thing. I can call this function as often as I like. I can move the call to other places in a calling function.",
           "motivation": "When I have a function that gives me a value and has no observable side effects, I have a very valuable thing. I can call this function as often as I like. I can move the call to other places in a calling function.",
-          "indicators": [
-            "Mutable Data"
-          ]
+          "indicators": ["Mutable Data"]
         },
         {
           "name": "Parameterize Function",
@@ -392,27 +324,19 @@
           "name": "Remove Flag Argument",
           "description": "A flag argument is a function argument that the caller uses to indicate which logic the called function should execute. I may call a function that looks like this: Click here to view code image function bookConcert(aCustomer, isPremium) { if (isPremium) { // logic for premium booking } else { // logic for regular booking } } To book a premium concert, I issue the call like so: bookConcert(aCustomer, true); Flag arguments can also come as enums: Click here to view code image bookConcert(aCustomer, CustomerType.PREMIUM); or strings (or symbols in languages that use them): Click here to view code image bookConcert(aCustomer, \"premium\"); I dislike flag arguments because they complicate the process of understanding what function calls are available and how to call them.",
           "motivation": "A flag argument is a function argument that the caller uses to indicate which logic the called function should execute. I may call a function that looks like this: Click here to view code image function bookConcert(aCustomer, isPremium) { if (isPremium) { // logic for premium booking } else { // logic for regular booking } } To book a premium concert, I issue the call like so: bookConcert(aCustomer, true); Flag arguments can also come as enums: Click here to view code image bookConcert(aCustomer, CustomerType.PREMIUM); or strings (or symbols in languages that use them): Click here to view code image bookConcert(aCustomer, \"premium\"); I dislike flag arguments because they complicate the process of understanding what function calls are available and how to call them.",
-          "indicators": [
-            "Long Parameter List"
-          ]
+          "indicators": ["Long Parameter List"]
         },
         {
           "name": "Preserve Whole Object",
           "description": "If I see code that derives a couple of values from a record and then passes these values into a function, I like to replace those values with the whole record itself, letting the function body derive the values it needs. Passing the whole record handles change better should the called function need more data from the whole in the future -- that change would not require me to alter the parameter list.",
           "motivation": "If I see code that derives a couple of values from a record and then passes these values into a function, I like to replace those values with the whole record itself, letting the function body derive the values it needs. Passing the whole record handles change better should the called function need more data from the whole in the future -- that change would not require me to alter the parameter list.",
-          "indicators": [
-            "Long Function",
-            "Long Parameter List",
-            "Data Clumps"
-          ]
+          "indicators": ["Long Function", "Long Parameter List", "Data Clumps"]
         },
         {
           "name": "Replace Parameter with Query",
           "description": "The parameter list to a function should summarize the points of variability of that function, indicating the primary ways in which that function may behave differently. As with any statement in code, it's good to avoid any duplication, and it's easier to understand if the parameter list is short.",
           "motivation": "The parameter list to a function should summarize the points of variability of that function, indicating the primary ways in which that function may behave differently. As with any statement in code, it's good to avoid any duplication, and it's easier to understand if the parameter list is short.",
-          "indicators": [
-            "Long Parameter List"
-          ]
+          "indicators": ["Long Parameter List"]
         },
         {
           "name": "Replace Query with Parameter",
@@ -424,10 +348,7 @@
           "name": "Remove Setting Method",
           "description": "Providing a setting method indicates that a field may be changed. If I don't want that field to change once the object is created, I don't provide a setting method (and make the field immutable). That way, the field is set only in the constructor, my intention to have it not change is clear, and I usually remove the very possibility that the field will change.",
           "motivation": "Providing a setting method indicates that a field may be changed. If I don't want that field to change once the object is created, I don't provide a setting method (and make the field immutable). That way, the field is set only in the constructor, my intention to have it not change is clear, and I usually remove the very possibility that the field will change.",
-          "indicators": [
-            "Mutable Data",
-            "Data Class"
-          ]
+          "indicators": ["Mutable Data", "Data Class"]
         },
         {
           "name": "Replace Constructor with Factory Function",
@@ -439,9 +360,7 @@
           "name": "Replace Function with Command",
           "description": "Functions -- either freestanding or attached to objects as methods -- are one of the fundamental building blocks of programming. But there are times when it's useful to encapsulate a function into its own object, which I refer to as a \"command object\" or simply a command.",
           "motivation": "Functions -- either freestanding or attached to objects as methods -- are one of the fundamental building blocks of programming. But there are times when it's useful to encapsulate a function into its own object, which I refer to as a \"command object\" or simply a command.",
-          "indicators": [
-            "Long Function"
-          ]
+          "indicators": ["Long Function"]
         },
         {
           "name": "Replace Command with Function",
@@ -459,9 +378,7 @@
           "name": "Pull Up Method",
           "description": "Eliminating duplicate code is important. Two duplicate methods may work fine as they are, but they are nothing but a breeding ground for bugs in the future. Whenever there is duplication, there is risk that an alteration to one copy will not be made to the other.",
           "motivation": "Eliminating duplicate code is important. Two duplicate methods may work fine as they are, but they are nothing but a breeding ground for bugs in the future. Whenever there is duplication, there is risk that an alteration to one copy will not be made to the other.",
-          "indicators": [
-            "Duplicated Code"
-          ]
+          "indicators": ["Duplicated Code"]
         },
         {
           "name": "Pull Up Field",
@@ -479,26 +396,19 @@
           "name": "Push Down Method",
           "description": "If a method is only relevant to one subclass (or a small proportion of subclasses), removing it from the superclass and putting it only on the subclass(es) makes that clearer. I can only do this refactoring if the caller knows it's working with a particular subclass -- otherwise, I should use Replace Conditional with Polymorphism (272) with some placebo behavior on the superclass.",
           "motivation": "If a method is only relevant to one subclass (or a small proportion of subclasses), removing it from the superclass and putting it only on the subclass(es) makes that clearer. I can only do this refactoring if the caller knows it's working with a particular subclass -- otherwise, I should use Replace Conditional with Polymorphism (272) with some placebo behavior on the superclass.",
-          "indicators": [
-            "Refused Bequest"
-          ]
+          "indicators": ["Refused Bequest"]
         },
         {
           "name": "Push Down Field",
           "description": "If a field is only used by one subclass (or a small proportion of subclasses), I move it to those subclasses.",
           "motivation": "If a field is only used by one subclass (or a small proportion of subclasses), I move it to those subclasses.",
-          "indicators": [
-            "Refused Bequest"
-          ]
+          "indicators": ["Refused Bequest"]
         },
         {
           "name": "Replace Type Code with Subclasses",
           "description": "Software systems often need to represent different kinds of a similar thing. I may classify employees by their job type (engineer, manager, salesman), or orders by their priority (rush, regular). My first tool for handling this is some kind of type code field -- depending on the language, that might be an enum, symbol, string, or number.",
           "motivation": "Software systems often need to represent different kinds of a similar thing. I may classify employees by their job type (engineer, manager, salesman), or orders by their priority (rush, regular). My first tool for handling this is some kind of type code field -- depending on the language, that might be an enum, symbol, string, or number.",
-          "indicators": [
-            "Primitive Obsession",
-            "Large Class"
-          ]
+          "indicators": ["Primitive Obsession", "Large Class"]
         },
         {
           "name": "Remove Subclass",
@@ -510,39 +420,25 @@
           "name": "Extract Superclass",
           "description": "If I see two classes doing similar things, I can take advantage of the basic mechanism of inheritance to pull their similarities together into a superclass. I can use Pull Up Field (353) to move common data into the superclass, and Pull Up Method (350) to move the common behavior.",
           "motivation": "If I see two classes doing similar things, I can take advantage of the basic mechanism of inheritance to pull their similarities together into a superclass. I can use Pull Up Field (353) to move common data into the superclass, and Pull Up Method (350) to move the common behavior.",
-          "indicators": [
-            "Large Class",
-            "Alternative Classes with Different Interfaces"
-          ]
+          "indicators": ["Large Class", "Alternative Classes with Different Interfaces"]
         },
         {
           "name": "Collapse Hierarchy",
           "description": "When I'm refactoring a class hierarchy, I'm often pulling and pushing features around. As the hierarchy evolves, I sometimes find that a class and its parent are no longer different enough to be worth keeping separate.",
           "motivation": "When I'm refactoring a class hierarchy, I'm often pulling and pushing features around. As the hierarchy evolves, I sometimes find that a class and its parent are no longer different enough to be worth keeping separate.",
-          "indicators": [
-            "Lazy Element",
-            "Speculative Generality"
-          ]
+          "indicators": ["Lazy Element", "Speculative Generality"]
         },
         {
           "name": "Replace Subclass with Delegate",
           "description": "If I have some objects whose behavior varies from category to category, the natural mechanism to express this is inheritance. I put all the common data and behavior in the superclass, and let each subclass add and override features as needed.",
           "motivation": "If I have some objects whose behavior varies from category to category, the natural mechanism to express this is inheritance. I put all the common data and behavior in the superclass, and let each subclass add and override features as needed.",
-          "indicators": [
-            "Middle Man",
-            "Insider Trading",
-            "Refused Bequest"
-          ]
+          "indicators": ["Middle Man", "Insider Trading", "Refused Bequest"]
         },
         {
           "name": "Replace Superclass with Delegate",
           "description": "In object-oriented programs, inheritance is a powerful and easily available way to reuse existing functionality. I inherit from some existing class, then override and add additional features. But subclassing can be done in a way that leads to confusion and complication.",
           "motivation": "In object-oriented programs, inheritance is a powerful and easily available way to reuse existing functionality. I inherit from some existing class, then override and add additional features. But subclassing can be done in a way that leads to confusion and complication.",
-          "indicators": [
-            "Middle Man",
-            "Insider Trading",
-            "Refused Bequest"
-          ]
+          "indicators": ["Middle Man", "Insider Trading", "Refused Bequest"]
         }
       ]
     }
@@ -551,20 +447,12 @@
     {
       "name": "Mysterious Name",
       "description": "Code elements (functions, variables, classes) whose names don't clearly communicate what they do, forcing readers to puzzle over the code.",
-      "suggestedRefactorings": [
-        "Change Function Declaration",
-        "Rename Variable",
-        "Rename Field"
-      ]
+      "suggestedRefactorings": ["Change Function Declaration", "Rename Variable", "Rename Field"]
     },
     {
       "name": "Duplicated Code",
       "description": "The same code structure appears in more than one place, meaning changes must be made in multiple locations and readers must carefully check for differences.",
-      "suggestedRefactorings": [
-        "Extract Function",
-        "Slide Statements",
-        "Pull Up Method"
-      ]
+      "suggestedRefactorings": ["Extract Function", "Slide Statements", "Pull Up Method"]
     },
     {
       "name": "Long Function",
@@ -594,9 +482,7 @@
     {
       "name": "Global Data",
       "description": "Data that can be modified from anywhere in the code base with no mechanism to discover which code touched it, leading to hard-to-find bugs.",
-      "suggestedRefactorings": [
-        "Encapsulate Variable"
-      ]
+      "suggestedRefactorings": ["Encapsulate Variable"]
     },
     {
       "name": "Mutable Data",
@@ -617,12 +503,7 @@
     {
       "name": "Divergent Change",
       "description": "A module that is often changed in different ways for different reasons, indicating it has multiple responsibilities that should be separated.",
-      "suggestedRefactorings": [
-        "Split Phase",
-        "Move Function",
-        "Extract Function",
-        "Extract Class"
-      ]
+      "suggestedRefactorings": ["Split Phase", "Move Function", "Extract Function", "Extract Class"]
     },
     {
       "name": "Shotgun Surgery",
@@ -640,10 +521,7 @@
     {
       "name": "Feature Envy",
       "description": "A function that spends more time communicating with functions or data of another module than with its own, suggesting it belongs elsewhere.",
-      "suggestedRefactorings": [
-        "Move Function",
-        "Extract Function"
-      ]
+      "suggestedRefactorings": ["Move Function", "Extract Function"]
     },
     {
       "name": "Data Clumps",
@@ -668,25 +546,17 @@
     {
       "name": "Repeated Switches",
       "description": "The same conditional switching logic (switch/case or if/else cascades) appearing in multiple places, requiring updates everywhere when a new clause is added.",
-      "suggestedRefactorings": [
-        "Replace Conditional with Polymorphism"
-      ]
+      "suggestedRefactorings": ["Replace Conditional with Polymorphism"]
     },
     {
       "name": "Loops",
       "description": "Traditional loop constructs that can be replaced with more expressive pipeline operations like filter and map.",
-      "suggestedRefactorings": [
-        "Replace Loop with Pipeline"
-      ]
+      "suggestedRefactorings": ["Replace Loop with Pipeline"]
     },
     {
       "name": "Lazy Element",
       "description": "A program element (function or class) that doesn't do enough to justify its existence, such as a function named the same as its body or a class with a single simple function.",
-      "suggestedRefactorings": [
-        "Inline Function",
-        "Inline Class",
-        "Collapse Hierarchy"
-      ]
+      "suggestedRefactorings": ["Inline Function", "Inline Class", "Collapse Hierarchy"]
     },
     {
       "name": "Speculative Generality",
@@ -702,20 +572,12 @@
     {
       "name": "Temporary Field",
       "description": "A field in a class that is only set in certain circumstances, making the class confusing because you expect objects to use all their fields.",
-      "suggestedRefactorings": [
-        "Extract Class",
-        "Move Function",
-        "Introduce Special Case"
-      ]
+      "suggestedRefactorings": ["Extract Class", "Move Function", "Introduce Special Case"]
     },
     {
       "name": "Message Chains",
       "description": "A client navigates through a chain of objects (a.getB().getC().getD()), coupling it to the structure of that navigation chain.",
-      "suggestedRefactorings": [
-        "Hide Delegate",
-        "Extract Function",
-        "Move Function"
-      ]
+      "suggestedRefactorings": ["Hide Delegate", "Extract Function", "Move Function"]
     },
     {
       "name": "Middle Man",
