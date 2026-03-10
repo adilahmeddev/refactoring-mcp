@@ -10,6 +10,17 @@ import {
   searchRefactorings,
   getAllRefactorings,
 } from "./catalog.js";
+import {
+  textResponse,
+  formatCategories,
+  formatRefactoringList,
+  formatCategoryRefactorings,
+  formatRefactoringDetail,
+  formatSearchSuggestions,
+  formatSmells,
+  formatSmellSuggestions,
+  formatSearchResults,
+} from "./formatters.js";
 
 const server = new McpServer({
   name: "refactoring",
@@ -21,14 +32,7 @@ server.registerTool("list_categories", {
   description:
     "List all refactoring categories from Martin Fowler's catalog with their descriptions and refactoring names.",
 }, async () => {
-  const categories = getAllCategories();
-  const text = categories
-    .map(
-      (c) =>
-        `## ${c.name}\n${c.description}\n\nRefactorings: ${c.refactorings.map((r) => r.name).join(", ")}`
-    )
-    .join("\n\n---\n\n");
-  return { content: [{ type: "text" as const, text }] };
+  return textResponse(formatCategories(getAllCategories()));
 });
 
 server.registerTool(
@@ -49,25 +53,13 @@ server.registerTool(
     if (category) {
       const cat = getCategoryByName(category);
       if (!cat) {
-        return {
-          content: [
-            {
-              type: "text" as const,
-              text: `Category "${category}" not found. Use list_categories to see available categories.`,
-            },
-          ],
-        };
+        return textResponse(
+          `Category "${category}" not found. Use list_categories to see available categories.`
+        );
       }
-      const text = cat.refactorings
-        .map((r) => `**${r.name}**: ${r.description}`)
-        .join("\n\n");
-      return {
-        content: [{ type: "text" as const, text: `## ${cat.name}\n\n${text}` }],
-      };
+      return textResponse(formatCategoryRefactorings(cat));
     }
-    const all = getAllRefactorings();
-    const text = all.map((r) => `- **${r.name}**: ${r.description}`).join("\n");
-    return { content: [{ type: "text" as const, text }] };
+    return textResponse(formatRefactoringList(getAllRefactorings()));
   }
 );
 
@@ -90,45 +82,15 @@ server.registerTool(
     if (!result) {
       const matches = searchRefactorings(name);
       if (matches.length > 0) {
-        const suggestions = matches
-          .slice(0, 5)
-          .map((m) => `- ${m.refactoring.name} (${m.category})`)
-          .join("\n");
-        return {
-          content: [
-            {
-              type: "text" as const,
-              text: `Refactoring "${name}" not found. Did you mean:\n${suggestions}`,
-            },
-          ],
-        };
+        return textResponse(
+          `Refactoring "${name}" not found. Did you mean:\n${formatSearchSuggestions(matches)}`
+        );
       }
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `Refactoring "${name}" not found. Use list_refactorings to see available refactorings.`,
-          },
-        ],
-      };
+      return textResponse(
+        `Refactoring "${name}" not found. Use list_refactorings to see available refactorings.`
+      );
     }
-    const { refactoring, category } = result;
-    const text = [
-      `# ${refactoring.name}`,
-      `**Category**: ${category}`,
-      "",
-      `## Description`,
-      refactoring.description,
-      "",
-      `## Motivation`,
-      refactoring.motivation,
-      "",
-      `## Indicators (Code Smells)`,
-      refactoring.indicators.length > 0
-        ? refactoring.indicators.map((i) => `- ${i}`).join("\n")
-        : "No specific smell indicators listed.",
-    ].join("\n");
-    return { content: [{ type: "text" as const, text }] };
+    return textResponse(formatRefactoringDetail(result.refactoring, result.category));
   }
 );
 
@@ -137,14 +99,7 @@ server.registerTool("list_smells", {
   description:
     "List all code smells from Martin Fowler's catalog with descriptions and suggested refactorings for each.",
 }, async () => {
-  const smells = getAllSmells();
-  const text = smells
-    .map(
-      (s) =>
-        `### ${s.name}\n${s.description}\n**Suggested refactorings**: ${s.suggestedRefactorings.join(", ")}`
-    )
-    .join("\n\n");
-  return { content: [{ type: "text" as const, text }] };
+  return textResponse(formatSmells(getAllSmells()));
 });
 
 server.registerTool(
@@ -162,19 +117,7 @@ server.registerTool(
     }),
   },
   async ({ smells }) => {
-    const results = getRefactoringsForSmells(smells);
-    const text = results
-      .map((r) => {
-        if (r.refactorings.length === 0) {
-          return `### ${r.smell}\nNo matching smell found in catalog. Available smells: use list_smells to see all.`;
-        }
-        const refList = r.refactorings
-          .map((ref) => `- **${ref.name}** (${ref.category}): ${ref.description}`)
-          .join("\n");
-        return `### ${r.smell}\n${refList}`;
-      })
-      .join("\n\n---\n\n");
-    return { content: [{ type: "text" as const, text }] };
+    return textResponse(formatSmellSuggestions(getRefactoringsForSmells(smells)));
   }
 );
 
@@ -195,29 +138,11 @@ server.registerTool(
   async ({ query }) => {
     const results = searchRefactorings(query);
     if (results.length === 0) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: `No refactorings found matching "${query}".`,
-          },
-        ],
-      };
+      return textResponse(`No refactorings found matching "${query}".`);
     }
-    const text = results
-      .map(
-        (r) =>
-          `- **${r.refactoring.name}** (${r.category}): ${r.refactoring.description}`
-      )
-      .join("\n");
-    return {
-      content: [
-        {
-          type: "text" as const,
-          text: `Found ${results.length} refactoring(s) matching "${query}":\n\n${text}`,
-        },
-      ],
-    };
+    return textResponse(
+      `Found ${results.length} refactoring(s) matching "${query}":\n\n${formatSearchResults(results)}`
+    );
   }
 );
 
