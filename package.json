@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "bin": {
-    "refactoring-mcp": "./build/mcp"
+    "refactoring-mcp": "./build/refactoring-mcp"
   },
   "scripts": {
-    "build": "bun build ./src/index.ts --target bun --compile --outfile=./build/mcp",
+    "build": "bun build ./src/index.ts --target bun --compile --outfile=./build/refactoring-mcp",
     "start": "bun run ./src/index.ts",
     "typecheck": "tsc --noEmit"
   },
