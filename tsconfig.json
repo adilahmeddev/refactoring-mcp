@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
     // Environment setup & latest features
-    "lib": [
-      "ESNext"
-    ],
+    "lib": ["ESNext"],
     "target": "ESNext",
     "module": "Preserve",
     "moduleDetection": "force",
@@ -17,6 +15,7 @@
     // Best practices
     "strict": true,
     "skipLibCheck": true,
+    "types": ["node"],
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
@@ -25,9 +24,7 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false,
     "paths": {
-      "@modelcontextprotocol/server": [
-        "./node_modules/@modelcontextprotocol/server/src/index.ts"
-      ],
+      "@modelcontextprotocol/server": ["./node_modules/@modelcontextprotocol/server/src/index.ts"],
       "@modelcontextprotocol/server/_shims": [
         "./node_modules/@modelcontextprotocol/server/src/shimsNode.ts"
       ],
@@ -36,10 +33,6 @@
       ]
     }
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

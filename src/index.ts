@@ -1,5 +1,3 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import * as z from "zod/v4";
 import {
   handleGetRefactoring,
@@ -9,6 +7,8 @@ import {
   handleSearchRefactorings,
   handleSuggestRefactorings,
 } from "./handlers.js";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
 function createServer(): McpServer {
   return new McpServer({
@@ -105,16 +105,9 @@ function registerTools(server: McpServer): void {
   );
 }
 
-async function main() {
-  const server = createServer();
-  registerTools(server);
+const server = createServer();
+registerTools(server);
 
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error("Refactoring MCP Server running on stdio");
-}
-
-main().catch((error) => {
-  console.error("Fatal error in main():", error);
-  process.exit(1);
-});
+const transport = new StdioServerTransport();
+await server.connect(transport);
+console.error("Refactoring MCP Server running on stdio");

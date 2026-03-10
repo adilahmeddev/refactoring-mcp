@@ -1,38 +1,37 @@
 import type { Category, Refactoring, Smell } from "./catalog.js";
 
-type TextContent = { type: "text"; text: string };
-type ToolResponse = { content: TextContent[] };
+interface TextContent {
+  type: "text";
+  text: string;
+}
+export interface ToolResponse {
+  [key: string]: unknown;
+  content: TextContent[];
+}
 
 export function textResponse(text: string): ToolResponse {
-  return { content: [{ type: "text", text }] };
+  return { content: [{ text, type: "text" }] };
 }
 
 export function formatCategories(categories: Category[]): string {
   return categories
     .map(
       (c) =>
-        `## ${c.name}\n${c.description}\n\nRefactorings: ${c.refactorings.map((r) => r.name).join(", ")}`
+        `## ${c.name}\n${c.description}\n\nRefactorings: ${c.refactorings.map((r) => r.name).join(", ")}`,
     )
     .join("\n\n---\n\n");
 }
 
 export function formatRefactoringList(refactorings: Refactoring[]): string {
-  return refactorings
-    .map((r) => `- **${r.name}**: ${r.description}`)
-    .join("\n");
+  return refactorings.map((r) => `- **${r.name}**: ${r.description}`).join("\n");
 }
 
 export function formatCategoryRefactorings(category: Category): string {
-  const text = category.refactorings
-    .map((r) => `**${r.name}**: ${r.description}`)
-    .join("\n\n");
+  const text = category.refactorings.map((r) => `**${r.name}**: ${r.description}`).join("\n\n");
   return `## ${category.name}\n\n${text}`;
 }
 
-export function formatRefactoringDetail(
-  refactoring: Refactoring,
-  category: string
-): string {
+export function formatRefactoringDetail(refactoring: Refactoring, category: string): string {
   return [
     `# ${refactoring.name}`,
     `**Category**: ${category}`,
@@ -51,7 +50,7 @@ export function formatRefactoringDetail(
 }
 
 export function formatSearchSuggestions(
-  matches: { refactoring: Refactoring; category: string }[]
+  matches: { refactoring: Refactoring; category: string }[],
 ): string {
   return matches
     .slice(0, 5)
@@ -63,7 +62,7 @@ export function formatSmells(smells: Smell[]): string {
   return smells
     .map(
       (s) =>
-        `### ${s.name}\n${s.description}\n**Suggested refactorings**: ${s.suggestedRefactorings.join(", ")}`
+        `### ${s.name}\n${s.description}\n**Suggested refactorings**: ${s.suggestedRefactorings.join(", ")}`,
     )
     .join("\n\n");
 }
@@ -72,7 +71,7 @@ export function formatSmellSuggestions(
   results: {
     smell: string;
     refactorings: { name: string; description: string; category: string }[];
-  }[]
+  }[],
 ): string {
   return results
     .map((r) => {
@@ -88,12 +87,9 @@ export function formatSmellSuggestions(
 }
 
 export function formatSearchResults(
-  results: { refactoring: Refactoring; category: string }[]
+  results: { refactoring: Refactoring; category: string }[],
 ): string {
   return results
-    .map(
-      (r) =>
-        `- **${r.refactoring.name}** (${r.category}): ${r.refactoring.description}`
-    )
+    .map((r) => `- **${r.refactoring.name}** (${r.category}): ${r.refactoring.description}`)
     .join("\n");
 }

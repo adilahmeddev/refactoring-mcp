@@ -1,34 +1,35 @@
 import {
-  getAllCategories,
-  getCategoryByName,
-  getRefactoringByName,
-  getAllSmells,
-  getRefactoringsForSmells,
-  searchRefactorings,
-  getAllRefactorings,
-} from "./catalog.js";
-import {
-  textResponse,
+  type ToolResponse,
   formatCategories,
-  formatRefactoringList,
   formatCategoryRefactorings,
   formatRefactoringDetail,
-  formatSearchSuggestions,
-  formatSmells,
-  formatSmellSuggestions,
+  formatRefactoringList,
   formatSearchResults,
+  formatSearchSuggestions,
+  formatSmellSuggestions,
+  formatSmells,
+  textResponse,
 } from "./formatters.js";
+import {
+  getAllCategories,
+  getAllRefactorings,
+  getAllSmells,
+  getCategoryByName,
+  getRefactoringByName,
+  getRefactoringsForSmells,
+  searchRefactorings,
+} from "./catalog.js";
 
-export function handleListCategories() {
+export function handleListCategories(): ToolResponse {
   return textResponse(formatCategories(getAllCategories()));
 }
 
-export function handleListRefactorings({ category }: { category?: string }) {
+export function handleListRefactorings({ category }: { category?: string }): ToolResponse {
   if (category) {
     const cat = getCategoryByName(category);
     if (!cat) {
       return textResponse(
-        `Category "${category}" not found. Use list_categories to see available categories.`
+        `Category "${category}" not found. Use list_categories to see available categories.`,
       );
     }
     return textResponse(formatCategoryRefactorings(cat));
@@ -36,40 +37,36 @@ export function handleListRefactorings({ category }: { category?: string }) {
   return textResponse(formatRefactoringList(getAllRefactorings()));
 }
 
-export function handleGetRefactoring({ name }: { name: string }) {
+export function handleGetRefactoring({ name }: { name: string }): ToolResponse {
   const result = getRefactoringByName(name);
   if (!result) {
     const matches = searchRefactorings(name);
     if (matches.length > 0) {
       return textResponse(
-        `Refactoring "${name}" not found. Did you mean:\n${formatSearchSuggestions(matches)}`
+        `Refactoring "${name}" not found. Did you mean:\n${formatSearchSuggestions(matches)}`,
       );
     }
     return textResponse(
-      `Refactoring "${name}" not found. Use list_refactorings to see available refactorings.`
+      `Refactoring "${name}" not found. Use list_refactorings to see available refactorings.`,
     );
   }
-  return textResponse(
-    formatRefactoringDetail(result.refactoring, result.category)
-  );
+  return textResponse(formatRefactoringDetail(result.refactoring, result.category));
 }
 
-export function handleListSmells() {
+export function handleListSmells(): ToolResponse {
   return textResponse(formatSmells(getAllSmells()));
 }
 
-export function handleSuggestRefactorings({ smells }: { smells: string[] }) {
-  return textResponse(
-    formatSmellSuggestions(getRefactoringsForSmells(smells))
-  );
+export function handleSuggestRefactorings({ smells }: { smells: string[] }): ToolResponse {
+  return textResponse(formatSmellSuggestions(getRefactoringsForSmells(smells)));
 }
 
-export function handleSearchRefactorings({ query }: { query: string }) {
+export function handleSearchRefactorings({ query }: { query: string }): ToolResponse {
   const results = searchRefactorings(query);
   if (results.length === 0) {
     return textResponse(`No refactorings found matching "${query}".`);
   }
   return textResponse(
-    `Found ${results.length} refactoring(s) matching "${query}":\n\n${formatSearchResults(results)}`
+    `Found ${results.length} refactoring(s) matching "${query}":\n\n${formatSearchResults(results)}`,
   );
 }
