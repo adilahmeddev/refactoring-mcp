@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",
-    "typescript": "^5.9.3",
+    "typescript": "rc",
     "zod": "^4.3.6"
   },
   "devDependencies": {

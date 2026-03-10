@@ -2,25 +2,13 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import * as z from "zod/v4";
 import {
-  getAllCategories,
-  getCategoryByName,
-  getRefactoringByName,
-  getAllSmells,
-  getRefactoringsForSmells,
-  searchRefactorings,
-  getAllRefactorings,
-} from "./catalog.js";
-import {
-  textResponse,
-  formatCategories,
-  formatRefactoringList,
-  formatCategoryRefactorings,
-  formatRefactoringDetail,
-  formatSearchSuggestions,
-  formatSmells,
-  formatSmellSuggestions,
-  formatSearchResults,
-} from "./formatters.js";
+  handleListCategories,
+  handleListRefactorings,
+  handleGetRefactoring,
+  handleListSmells,
+  handleSuggestRefactorings,
+  handleSearchRefactorings,
+} from "./handlers.js";
 
 const server = new McpServer({
   name: "refactoring",
@@ -31,9 +19,7 @@ server.registerTool("list_categories", {
   title: "List Refactoring Categories",
   description:
     "List all refactoring categories from Martin Fowler's catalog with their descriptions and refactoring names.",
-}, async () => {
-  return textResponse(formatCategories(getAllCategories()));
-});
+}, async () => handleListCategories());
 
 server.registerTool(
   "list_refactorings",
@@ -49,18 +35,7 @@ server.registerTool(
         ),
     }),
   },
-  async ({ category }) => {
-    if (category) {
-      const cat = getCategoryByName(category);
-      if (!cat) {
-        return textResponse(
-          `Category "${category}" not found. Use list_categories to see available categories.`
-        );
-      }
-      return textResponse(formatCategoryRefactorings(cat));
-    }
-    return textResponse(formatRefactoringList(getAllRefactorings()));
-  }
+  async ({ category }) => handleListRefactorings({ category })
 );
 
 server.registerTool(
@@ -77,30 +52,14 @@ server.registerTool(
         ),
     }),
   },
-  async ({ name }) => {
-    const result = getRefactoringByName(name);
-    if (!result) {
-      const matches = searchRefactorings(name);
-      if (matches.length > 0) {
-        return textResponse(
-          `Refactoring "${name}" not found. Did you mean:\n${formatSearchSuggestions(matches)}`
-        );
-      }
-      return textResponse(
-        `Refactoring "${name}" not found. Use list_refactorings to see available refactorings.`
-      );
-    }
-    return textResponse(formatRefactoringDetail(result.refactoring, result.category));
-  }
+  async ({ name }) => handleGetRefactoring({ name })
 );
 
 server.registerTool("list_smells", {
   title: "List Code Smells",
   description:
     "List all code smells from Martin Fowler's catalog with descriptions and suggested refactorings for each.",
-}, async () => {
-  return textResponse(formatSmells(getAllSmells()));
-});
+}, async () => handleListSmells());
 
 server.registerTool(
   "suggest_refactorings",
@@ -116,9 +75,7 @@ server.registerTool(
         ),
     }),
   },
-  async ({ smells }) => {
-    return textResponse(formatSmellSuggestions(getRefactoringsForSmells(smells)));
-  }
+  async ({ smells }) => handleSuggestRefactorings({ smells })
 );
 
 server.registerTool(
@@ -135,15 +92,7 @@ server.registerTool(
         ),
     }),
   },
-  async ({ query }) => {
-    const results = searchRefactorings(query);
-    if (results.length === 0) {
-      return textResponse(`No refactorings found matching "${query}".`);
-    }
-    return textResponse(
-      `Found ${results.length} refactoring(s) matching "${query}":\n\n${formatSearchResults(results)}`
-    );
-  }
+  async ({ query }) => handleSearchRefactorings({ query })
 );
 
 async function main() {
