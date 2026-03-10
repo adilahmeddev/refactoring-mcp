@@ -1,0 +1,5 @@
+{
+  "name": "refactoring-mcp",
+  "version": "1.0.0",
+  "description": "Martin Fowler's refactoring catalog as MCP tools for code smell detection and refactoring suggestions"
+}
