@@ -1,0 +1,15 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "refactoring-marketplace",
+  "owner": {
+    "name": "Adil Ahmed"
+  },
+  "plugins": [
+    {
+      "name": "refactoring-mcp",
+      "source": "./",
+      "description": "Martin Fowler's refactoring catalog as MCP tools for code smell detection and refactoring suggestions",
+      "category": "development"
+    }
+  ]
+}
